@@ -53,11 +53,12 @@ typedef enum bit [4:0] {reset		=	5'b00000, //0
 								sub2 		= 	5'b01110, //14
 								sub3 		= 	5'b01111, //15
 								ld1		=	5'b10000, //16
-								ld2 		=	5'b10001, //17
-								st1		=	5'b10010, //18
-								st2		=	5'b10011, //19
-								st3		=	5'b10100, //20
-								mvnz1		=	5'b10101} state_t;
+								ld2		=	5'b10001, //17
+								ld3 		=	5'b10010, //18
+								st1		=	5'b10011, //19
+								st2		=	5'b10100, //20
+								st3		=	5'b10101, //21
+								mvnz1		=	5'b10110} state_t;
 state_t state_reg, state_next;
 
 always_ff @(posedge clk or negedge resetn) begin
@@ -404,6 +405,25 @@ always @(*) begin
 					state_next = ld2;
 				end
 		ld2: begin
+					RXout = 1'b0; 
+					RYout = 1'b0;
+					Gout = 1'b0;
+					Dinout = 1'b0; 
+					IRin = 1'b0; 
+					Ain = 1'b0;
+					RXin = 1'b0; 
+					RYin = 1'b0; 
+					Gin = 1'b0; 
+					AddSub = 1'b0; 
+					Done = 1'b0;
+					ADDRin = 1'b0;
+					Doutin = 1'b0;
+					W_D = 1'b0;
+					incr_pc = 1'b0;
+					R7out2 = 1'b0;
+					state_next = ld3;
+				end
+		ld3: begin
 					RXout = 1'b0; 
 					RYout = 1'b0;
 					Gout = 1'b0;
